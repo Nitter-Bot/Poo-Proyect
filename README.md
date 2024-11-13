@@ -1,4 +1,4 @@
-# Sistema de ventanas
+# Sistema de ventas
 
 Se desea desarrollar un software que permita implementar un sistema de ventas
 distribuido, que pueda ser utilizado en los puntos de ventas y se concentre la información
