@@ -56,7 +56,7 @@ desea realizar una conexion
         Generar objeto de cuando se pida una conexion y verificarla, en autenticacion
         seria nadamas agregar los sockets necesario y el algoritmo para ello.
 
-    ###Compilar
+    ### Compilar
         Para compilar se genera una carpeta llamada Acceso
         Para su uso se importa esta carpeta
         Para la prueba
