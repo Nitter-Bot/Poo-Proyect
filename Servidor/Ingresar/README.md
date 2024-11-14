@@ -50,8 +50,7 @@ desea realizar una conexion
 
 ## Notas
 
-    El archivo prueba fue usado para verificar que los datos se guardaban, se usara mas
-    adelante para poder verificar cuando se haga una conexion al servidos
+- El archivo prueba fue usado para verificar que los datos se guardaban, se usara mas adelante para poder verificar cuando se haga una conexion al servidos
     
     ### To do
         Generar objeto de cuando se pida una conexion y verificarla, en autenticacion
