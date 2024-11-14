@@ -7,7 +7,7 @@ desea realizar una conexion
 
 ## Contenido
 
-- ** Autenticacion.java **
+- **Autenticacion.java**
     Clase que contiene un hash map y una variable para su serializacion
     ### Atributos 
         serialVersionUID = 1, variable para la seriacion del objeto
