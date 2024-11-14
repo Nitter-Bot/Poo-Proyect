@@ -1,6 +1,7 @@
 package Acceso;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.io.IOException;
 
 public class Deserializar{
 	public static Autenticacion loadUsers(){
@@ -9,7 +10,9 @@ public class Deserializar{
 			ObjectInputStream in = new ObjectInputStream(file);
 			return (Autenticacion) in.readObject();
 		}catch(IOException e){
-			return null;
+			return new Autenticacion();
+		}catch(ClassNotFoundException e){
+			return new Autenticacion();
 		}
 	}
 }
