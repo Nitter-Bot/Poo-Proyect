@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>182</y>
+      <w>259</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>__Vendedor__
+Package::Actores
+--
+-Nombre
+-ID trabajador
+# Jefe Directo
+--
+# GetNombre
+# Set Nombre
+# GetId
+# Set Id
++ Ventana de trabajo
++ Ver vuelos disponibles
++ Asignar asientos
++ Quitar asientos
++ Recibir asientos disponibles del vuelo
++ Generar recibo y tickets de vuelo
+--
+Responsibilities
+-- Asignar y desaginar asientos de un vuelo
+-- Generar tickets y recibos de vuelo</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>98</x>
+      <y>455</y>
+      <w>217</w>
+      <h>203</h>
+    </coordinates>
+    <panel_attributes>__Supervisor__
+Package::Actores
+--
+
+--
+Supervisor()
++ Cancelar vuelos
++ Reasignar horarios
++ Agregar vuelos
++ Contratar/Despedir Vendedores
++ Ver ventas realizadas
+--
+Responsibilities
+-- Control de vuelos en el servidor
+-- Control de personal</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>420</y>
+      <w>21</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>714</x>
+      <y>147</y>
+      <w>469</w>
+      <h>623</h>
+    </coordinates>
+    <panel_attributes>Servidor
+--
+bg=#d9f5c8
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>35</x>
+      <y>140</y>
+      <w>609</w>
+      <h>623</h>
+    </coordinates>
+    <panel_attributes>Cliente
+--
+bg=#d9f5c8
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>735</x>
+      <y>189</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>__Autenticacion__
+Package::Acceso
+
+--
+- Usuarios HashMap
+
+--
+#Registrar Usuario
+#Quitar Usuario
+# Verificar usuario
+--
+Responsibilities
+-- Control de los usuarios</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1022</x>
+      <y>217</y>
+      <w>133</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>_object: Usuario_
+--
+Usuario
+Password
+Estado
+Rol
+--
+Setters &amp; Getters
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>826</x>
+      <y>224</y>
+      <w>203</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes>
+    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>742</x>
+      <y>385</y>
+      <w>161</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>___Log___ 
+Package::Acceso
+{Thread}
+--
+
+--
++Recibir Usuario y Password
++Checar estado del usuario
++Entra o no
+--
+Responsibilities
+-- Verifica que el usuario sea
+valido para ingresar </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>812</x>
+      <y>315</y>
+      <w>98</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.&gt;
+&lt;&lt;Puede logearse?&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>602</x>
+      <y>252</y>
+      <w>154</w>
+      <h>203</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.&gt;
+&lt;&lt;Pide y da datos de acceso&gt;&gt;</panel_attributes>
+    <additional_attributes>200.0;270.0;10.0;270.0;10.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>406</x>
+      <y>196</y>
+      <w>203</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>__Acceder__
+--
+-Ventana de acceso
+
+--
+#Pedir datos
+#Mandar datos
+#Recuperar Sesion
+--
+Responsibilities
+-- Manda datos al servidor
+-- De acuerdo al tipo de usuario logeado 
+	asigna metodos que puede usar</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>322</x>
+      <y>252</y>
+      <w>91</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes>
+    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>308</x>
+      <y>336</y>
+      <w>133</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes>
+    <additional_attributes>140.0;10.0;90.0;10.0;90.0;240.0;10.0;240.0</additional_attributes>
+  </element>
+</diagram>
