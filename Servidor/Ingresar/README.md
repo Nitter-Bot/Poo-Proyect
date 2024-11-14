@@ -49,6 +49,7 @@ desea realizar una conexion
                     encuentre regresa un objeto de tipo autenticacion
 
 ## Notas
+
     El archivo prueba fue usado para verificar que los datos se guardaban, se usara mas
     adelante para poder verificar cuando se haga una conexion al servidos
     
