@@ -3,7 +3,7 @@ import Acceso.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class vendedor{
+public class Vendedor{
   private String nombre;
   private int idTrabajador;
   private String jefeDirecto;
