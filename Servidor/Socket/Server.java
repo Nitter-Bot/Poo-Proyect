@@ -14,10 +14,10 @@ public class Server{
 
 			while(true){
 				Socket cliente = server.accept();
-				System.out.println("Cliente conectado: " + cliente.getInetAddress().getHostAdress());
+				System.out.println("Cliente conectado: " + cliente.getInetAddress()/*.getHostAdress()*/);
 
 				// Asignar la conexión a un nuevo hilo
-				ManejadorCliente socketCliente = new ManejadorCliente(client);
+				ManejadorCliente socketCliente = new ManejadorCliente(cliente);
 				new Thread(socketCliente).start();
 			}
         	}catch(IOException e){
@@ -27,7 +27,7 @@ public class Server{
 				try{
 					server.close();
 				}catch(IOException e){
-					e.printStackTree();
+					e.printStackTrace();
 				}
 			}
         	}
@@ -37,7 +37,7 @@ public class Server{
 	private static class ManejadorCliente implements Runnable{
         	private final Socket clientSocket;
 
-		public ClientHandler(Socket socket){
+		public ManejadorCliente(Socket socket){
             		this.clientSocket = socket;
         	}
 
