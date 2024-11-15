@@ -1,9 +1,14 @@
-# Sistema de ventas
+# Sistema de venta de vuelos
 
-Se desea desarrollar un software que permita implementar un sistema de ventas
-distribuido, que pueda ser utilizado en los puntos de ventas y se concentre la información
-en el almacén o matriz. Este sistema deberá ser capaz de llevar el control de ventas en cada
-punto de venta, y al final de la jornada enviar la información a la matriz para realizar el
-balance general de todos los puntos de venta. (El tipo de producto de venta puede ser
-sustituido por el producto deseado, vuelos o reservaciones de hotel, materias primas,
-vehículos, etc.)
+Sistema cliente-servidor para vender boletos de vuelos. El sistema es capaz de llevar el control
+de ventas en cada punto de venta, asignar lugares en el vuelo deseado y generar un ticket de cobro,
+y los boletos del vuelo adquirido.
+
+Es capaz de revisar que los boletos adquiridos no sobrelapen asientos, y que sea en un vuelo valido,
+es decir, que no este lleno, inexistente o que ya partio.
+
+Se lleva un registro de los vuelos, y la venta de boletos a los lugares
+
+## Diagramas Uml
+
+
