@@ -1,8 +1,11 @@
 import Acceso.*;
 
-class Prueba{
+class ControlUsuarios{
+	private Autenticacion authControler = Deserializar.loadUsers();
+	
+
+
 	public static void main(String [] args){
-		Autenticacion a = Deserializar.loadUsers();
 		a.printMap();
 
 		a.signUpUser("Vale","pass");
