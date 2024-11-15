@@ -16,9 +16,18 @@ public class Autenticacion implements Serializable{
 			System.out.println("[" + u.getUser() + ":" + u.getPassword()+"]\n");
 		}
 	}
+
+	public boolean userExists(String userToValidate){
+		return users.get(userToValidate)!=null;
+	}
 	
+	public Usuario getUser(String user){
+		return users.get(user);
+	}
+
 	public boolean logIn(String user,String password){
 		Usuario u = users.get(user);
+		System.out.println(u);
 		if( u == null)return false;
 
 		if(u.getPassword().equals(password))
