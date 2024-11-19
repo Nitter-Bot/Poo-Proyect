@@ -2,6 +2,7 @@ impor java.HashSet;
 impor java.Set;
 class Vuelo {
   Set<int>asientos= new HashSet<>();
+  
   int id;
   double costo;
   String origen,destino,fechaSalida;
@@ -19,14 +20,29 @@ class Vuelo {
       this.costo=costo;
       this.fechaSalida=fechaSalida;
   }
-  void asignarAsiento(){
-    
+  void asignarAsiento(String lugar){
+    if(asientos.contains(lugar)){
+      asientos.remove(lugar);
+    }else {
+      System.out.println("El asiento que eligio no esta disponible. ");
+    }    
   }
-  void desocuparAsiento(){
-    
+  void desocuparAsiento(String lugar){
+    if(asientos.contains(lugar)){
+      System.out.println("El asiento aun no ha sido elegido. ");
+    }else {
+      asientos.add(lugar);
+      System.out.println("El asiento ha sido desocupado. ");
+    }
   }
+  
   void mostrarAsientosDisponibles(){
-    
+     if (asientos.isEmpty()){
+       System.out.println("Asientos Disponibles"+asientos);
+     }else{
+       System.out.println("Sin asientos disponibles");
+       
+     }
   }
 }
  
