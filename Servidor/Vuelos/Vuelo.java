@@ -1,5 +1,5 @@
-impor java.HashSet;
-impor java.Set;
+import java.HashSet;
+import java.Set;
 class Vuelo {
   Set<int>asientos= new HashSet<>();
   
