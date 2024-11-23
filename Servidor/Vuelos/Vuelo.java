@@ -9,16 +9,6 @@ class Vuelo {
   final int capacidad=50;//Aun no entiendo su funcion pero ya esta declarada jaja
    
     Vuelo (){}
-  //Siempre al crear un objeto Vuelo, se inicializa el set con los asientos
-    Vuelo(){
-      for (int i=0; i<10;i++){
-        asientos.add("A"+String.valueOf(i));
-        asientos.add("B"+String.valueOf(i));
-        asientos.add("C"+String.valueOf(i));
-        asientos.add("D"+String.valueOf(i));
-        asientos.add("E"+String.valueOf(i));
-      }
-    }
   //CONSTRUCTORES
     Vuelo(int id,double costo,String origen,String destino,String fechaSalida){
       this.id=id;
@@ -26,12 +16,26 @@ class Vuelo {
       this.origen=origen;
       this.destino=destino;
       this.fechaSalida=fechaSalida;
+        for (int i=0; i<10;i++){
+          asientos.add("A"+String.valueOf(i));
+          asientos.add("B"+String.valueOf(i));
+          asientos.add("C"+String.valueOf(i));
+          asientos.add("D"+String.valueOf(i));
+          asientos.add("E"+String.valueOf(i));
+        }
     }
 
   Vuelo(int id,double costo, String fechaSalida){
       this.id=id;
       this.costo=costo;
       this.fechaSalida=fechaSalida;
+      for (int i=0; i<10;i++){
+          asientos.add("A"+String.valueOf(i));
+          asientos.add("B"+String.valueOf(i));
+          asientos.add("C"+String.valueOf(i));
+          asientos.add("D"+String.valueOf(i));
+          asientos.add("E"+String.valueOf(i));
+      }
   }
 //METODOS
   void asignarAsiento(String lugar){
@@ -65,7 +69,8 @@ class Vuelo {
 
 }
  
-/*class Controladora {
+/*DESCOMENTA ESTOS SI QUIERES PROBAR QUE FUNCIONE
+class Controladora {
   public static void main (String [] a) {
 
       Vuelo p1 = new Vuelo(1234324,123.23,"CDMX","ACAPULCO","12/04/2024");
