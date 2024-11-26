@@ -1,12 +1,31 @@
 package Vuelos;
 import java.util.HashSet;
 import  java.util.Set;
+import java.io.*;
 
-class Vuelo {
-  Set<String>asientos= new HashSet<>();//En el set unicamente contiene los asientos disponibles
-  int id;
-  double costo;
-  String origen,destino,fechaSalida;
+public class Vuelo implements Serializable{
+  private static final long serialVersionUID = 1L;
+  private Set<String>asientos= new HashSet<>();//En el set unicamente contiene los asientos disponibles
+  private int id;
+  private double costo;
+  private String origen,destino,fechaSalida;
+  
+  public String getOrigen(){
+    return origen;
+  }
+  public String getDestino(){
+    return destino;
+  }
+  public String getFecha(){
+    return fechaSalida;
+  }
+  public double getCosto(){
+    return costo;
+  }
+  public int getID(){
+    return id;
+  }
+
   int capacidad=50;//Aun no entiendo su funcion pero ya esta declarada jaja
     Vuelo (){}
   //CONSTRUCTORES
