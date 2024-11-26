@@ -2,10 +2,12 @@ package MultiServer;
 import java.io.*;
 import java.net.*;
 import Control.*;
+import Vuelos.*;
 
 public class Server{
 	private static final int PUERTO = 1234;
 	private static ControlUsuarios ctrl = new ControlUsuarios();
+	private static ListaVuelos lst = new ListaVuelos();
 
 	public static void main(String[] args){
 		ctrl.addUser("admin","admin");
@@ -44,10 +46,13 @@ public class Server{
 		private PrintWriter out;
 		private BufferedReader in;
 		private String nombreCliente;
-		
+		private ObjectOutputStream outObj;
+		private ObjectInputStream inObj;
 		public ManejadorCliente(Socket c){
 			this.cliente = c;
 			try{
+				outObj = new ObjectOutputStream(cliente.getOutputStream()); 
+				inObj = new ObjectInputStream(cliente.getInputStream());
 				out = new PrintWriter(cliente.getOutputStream(), true);
 				in = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
 			}catch(IOException e){
@@ -68,6 +73,23 @@ public class Server{
 						while((mensajeRecibido = in.readLine())!= null){
 							if(mensajeRecibido.equals("exit"))break;
 							System.out.println(nombreCliente + " : "+ mensajeRecibido);
+							switch(mensajeRecibido){
+								case "dameVuelos":
+									lst.sendVuelos(outObj);
+									break;
+								case "actualizoVuelos":
+									lst.receiveVuelos(inObj);
+									break;
+								case "agregaVuelo":
+									try{
+										lst.agregarVuelo((Vuelo)inObj.readObject());
+									}catch(ClassNotFoundException e){
+										out.println("De Servidor: No recibi bien tu vuelo ");
+									}
+									break;
+								default:
+									System.out.println("Nada que hacer");
+							}
 						}
 						out.println("close");
 						cliente.close();
@@ -94,6 +116,7 @@ public class Server{
 		
 		private void VerificarUsuario() throws UserNotFound,IOException{
 			String user, pass;
+			System.out.println("Verificando al usuario "+ nombreCliente );
 			out.println("Ingrese Usuario....");
 			user = in.readLine();
 			out.println("Ingrese Password....");
