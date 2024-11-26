@@ -1,3 +1,4 @@
+package Vuelos;
 import java.util.HashSet;
 import  java.util.Set;
 
@@ -6,8 +7,7 @@ class Vuelo {
   int id;
   double costo;
   String origen,destino,fechaSalida;
-  final int capacidad=50;//Aun no entiendo su funcion pero ya esta declarada jaja
-   
+  int capacidad=50;//Aun no entiendo su funcion pero ya esta declarada jaja
     Vuelo (){}
   //CONSTRUCTORES
     Vuelo(int id,double costo,String origen,String destino,String fechaSalida){
