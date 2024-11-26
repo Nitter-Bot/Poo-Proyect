@@ -1,3 +1,4 @@
+package Control;
 import Acceso.*;
 
 public class ControlUsuarios{
@@ -10,12 +11,16 @@ public class ControlUsuarios{
 		}else return "Usuario no valido, ya existe";
 	}
 
-	public Usuario accessGranted(String user,String password){
+	public boolean accessGranted(String user,String password){
 		if (authControler.logIn(user,password)){
-			return authControler.getUser(user);
+			return true;
 		}else{
-			return null;
+			return false;
 		}
+	}
+
+	public void save(){
+		Serializar.saveUsers(authControler);
 	}
 
 	/* Prueba marrana
