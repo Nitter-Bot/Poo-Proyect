@@ -27,7 +27,9 @@ public class Cliente{
 			out.println(scanner.nextLine());
 			System.out.println(in.readLine());
 			out.println(scanner.nextLine());
+			userRol = in.readLine();
 			clearC();
+			System.out.println("Bienvenido tu eres "+ userRol);
 			//Hilo para leer los msj del servidor ??
 			new Thread(() -> {
 				try {
