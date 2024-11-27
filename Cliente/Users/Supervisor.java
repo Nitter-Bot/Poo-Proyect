@@ -42,10 +42,24 @@ public class Supervisor extends Vendedor{
   }
 
   public void contratarDespedirVendedores(Vendedor vendedor, boolean contratar){
-    //Pendiente
+    if(contratar) {
+      listaVendedores.add(vendedor);
+      System.out.println("Vendedor " + vendedor.getNombre() + " ha sido contratado.");
+    }
+    else{
+      if(listaVendedores.remove(vendedor)){
+        System.out.println("Vendedor " + vendedor.getNombre() + " ha sido despedido.");
+      }
+      else{
+        System.out.println("El vendedor " + vendedor.getNombre() + " no se encuentra en la lista.");
+      }
+    }
   }
 
   public void verVentasRealizadas(){
-    //Pendiente
+    System.out.println("Ventas realizadas por los vendedores supervisados:");
+    for (Vendedor vendedor : listaVendedores){
+      System.out.println("Vendedor: " + vendedor.getNombre() + "Ventas: " + vendedor.getVentasRealizadas());
+    }
   }
 }
