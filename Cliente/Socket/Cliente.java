@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
+import VentanasTrabajo.*;
 
 public class Cliente{
 	private static String SERVER_ADDRESS;
@@ -29,13 +30,11 @@ public class Cliente{
 			out.println(scanner.nextLine());
 			userRol = in.readLine();
 			clearC();
-			System.out.println("Bienvenido tu eres "+ userRol);
-			//Hilo para leer los msj del servidor ??
+			//Hilo para leer los msj del servidor
 			new Thread(() -> {
 				try {
 					String serverResponse;
 					while ((serverResponse = in.readLine()) != null) {
-						if(serverResponse.equals("close"))break;
 						System.out.println(serverResponse);
 				    }
 
@@ -44,13 +43,14 @@ public class Cliente{
 				}
 			}).start();
 
-		    // Read messages from the console and send to the server
-		    String userInput;
-		    while (true) {
-			userInput = scanner.nextLine();
-			out.println(userInput);
-		    }
-		   
+			if(userRol.equals("vendedor")){
+				new TrabajoVendedor(out,in).mostrarTrabajo();
+			}else{
+				new TrabajoSupervisor(out,in).mostrarTrabajo();
+			}
+			
+			out.close();
+			in.close();
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
@@ -87,7 +87,7 @@ public class Cliente{
 		}
 	}
 	private static void clearC(){
-		System.out.print("\033[H\033[2J");  
+		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	}
 }
