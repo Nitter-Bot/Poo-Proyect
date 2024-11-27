@@ -17,8 +17,8 @@ public class Cliente{
 		while(!makeConnection());
 
 		try {
-			ObjectOutputStream outObj = new ObjectOutputStream(socket.getOutputStream()); 
-			ObjectInputStream inObj = new ObjectInputStream(socket.getInputStream());
+			//ObjectOutputStream outObj = new ObjectOutputStream(socket.getOutputStream()); 
+			//ObjectInputStream inObj = new ObjectInputStream(socket.getInputStream());
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			System.out.flush();
@@ -27,18 +27,20 @@ public class Cliente{
 			out.println(scanner.nextLine());
 			System.out.println(in.readLine());
 			out.println(scanner.nextLine());
-
+			clearC();
 			//Hilo para leer los msj del servidor ??
-			/*new Thread(() -> {
+			new Thread(() -> {
 				try {
-				    String serverResponse;
-				    while ((serverResponse = in.readLine()) != null) {
-					System.out.println(serverResponse);
+					String serverResponse;
+					while ((serverResponse = in.readLine()) != null) {
+						if(serverResponse.equals("close"))break;
+						System.out.println(serverResponse);
 				    }
+
 				} catch (IOException e) {
 				    e.printStackTrace();
 				}
-			}).start();*/
+			}).start();
 
 		    // Read messages from the console and send to the server
 		    String userInput;
@@ -53,6 +55,7 @@ public class Cliente{
 	}
 
 	public static void getServer(){
+		clearC();
 		System.out.println("Ingrese IP del servidor");
 		SERVER_ADDRESS = scanner.nextLine();
 		try{
@@ -66,6 +69,7 @@ public class Cliente{
 	
 	public static boolean makeConnection(){
 		try{
+			clearC();
 			socket = new Socket(SERVER_ADDRESS, SERVER_PORT);
 		    System.out.println("Conectado al servidor");
 		    return true;
@@ -79,6 +83,10 @@ public class Cliente{
 			e2.printStackTrace();
 			return false;
 		}
+	}
+	private static void clearC(){
+		System.out.print("\033[H\033[2J");  
+		System.out.flush();
 	}
 }
 
