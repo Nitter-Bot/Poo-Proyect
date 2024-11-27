@@ -35,7 +35,7 @@ public class Vuelo implements Serializable{
       this.origen=origen;
       this.destino=destino;
       this.fechaSalida=fechaSalida;
-        for (int i=0; i<10;i++){
+        for (int i=1; i<=10;i++){
           asientos.add("A"+String.valueOf(i));
           asientos.add("B"+String.valueOf(i));
           asientos.add("C"+String.valueOf(i));
@@ -48,7 +48,7 @@ public class Vuelo implements Serializable{
       this.id=id;
       this.costo=costo;
       this.fechaSalida=fechaSalida;
-      for (int i=0; i<10;i++){
+      for (int i=1; i<=10;i++){
           asientos.add("A"+String.valueOf(i));
           asientos.add("B"+String.valueOf(i));
           asientos.add("C"+String.valueOf(i));
@@ -75,14 +75,38 @@ public class Vuelo implements Serializable{
     }
   }
   
-  void mostrarAsientosDisponibles(){
+  void mostrarAsientosDisponibles(PrintWriter out){
+    out.print("\033[H\033[2J");  
+    out.flush();
+    out.printf("Vuelo %d\nOrigen: %s \tDestino %s \tFecha Programada del vuelo %s",id,origen,destino,fechaSalida);
+    out.println("Costo del boleto : " + costo);
      if (asientos.isEmpty()){
-       System.out.println("Sin asientos disponibles");
+       out.println("El avion ya esta lleno\n");
      }else{
-       System.out.println("Asientos Disponibles"+asientos);
-       
+        out.println("\n\n-------------Asientos ------------");
+        out.println("|           Zona Turista          ");
+        for(int c = 0; c<2;c++)
+        for(int i=1;i<=10;i++){
+          if(asientos.contains(S(c,i)))out.printf("| %c%d |",(char)('A'+c),i);
+          else out.print("|  X  |");
+        }
+        out.println("|           Zona Economica        ");
+        for(int c = 2; c<4;c++)
+        for(int i=1;i<=10;i++){
+          if(asientos.contains(S(c,i)))out.printf("| %c%d |",(char)('A'+c),i);
+          else out.print("|  X  |");
+        }
+        out.println("|            Zona VIP             ");
+        for(int i=1;i<=10;i++){
+          if(asientos.contains(S(5,i)))out.printf("| %c%d |","E",i);
+          else out.print("|  X  |");
+        }
      }
     
+  }
+
+  private String S(int c,int i){
+    return (char) ('A' + c) + "" + i;
   }
 
 

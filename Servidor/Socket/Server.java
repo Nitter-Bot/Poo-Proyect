@@ -126,7 +126,9 @@ public class Server{
 			pass = in.readLine();
 
 			if(ctrl.accessGranted(user,pass)){
-				out.println("ok");
+				System.out.println(nombreCliente+" Verificado!");
+
+				out.println(" ");
 			}else{
 				throw new UserNotFound();
 			}

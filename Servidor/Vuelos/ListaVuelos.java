@@ -34,7 +34,9 @@ public class ListaVuelos implements Serializable{
 		vuelos.add(v);
 	}
 
-	public synchronized Vuelo getVuelo(int index){
-		return vuelos.get(index-1);
+	public synchronized void getVuelo(int index, PrintWriter out){
+		Vuelo v = vuelos.get(index-1);
+		v.mostrarAsientosDisponibles(out);
+
 	}
 }
