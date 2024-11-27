@@ -51,8 +51,8 @@ public class Server{
 		public ManejadorCliente(Socket c){
 			this.cliente = c;
 			try{
-				outObj = new ObjectOutputStream(cliente.getOutputStream()); 
-				inObj = new ObjectInputStream(cliente.getInputStream());
+				//outObj = new ObjectOutputStream(cliente.getOutputStream()); 
+				//inObj = new ObjectInputStream(cliente.getInputStream());
 				out = new PrintWriter(cliente.getOutputStream(), true);
 				in = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
 			}catch(IOException e){
@@ -71,27 +71,30 @@ public class Server{
 					try{
 						String mensajeRecibido;
 						while((mensajeRecibido = in.readLine())!= null){
-							if(mensajeRecibido.equals("exit"))break;
+							if(mensajeRecibido.equals("exit")){
+								break;
+							}
 							System.out.println(nombreCliente + " : "+ mensajeRecibido);
 							switch(mensajeRecibido){
 								case "dameVuelos":
-									lst.sendVuelos(outObj);
+									lst.printVuelos(out);
 									break;
 								case "actualizoVuelos":
-									lst.receiveVuelos(inObj);
+									//lst.receiveVuelos(inObj);
 									break;
 								case "agregaVuelo":
-									try{
+									/*try{
 										lst.agregarVuelo((Vuelo)inObj.readObject());
 									}catch(ClassNotFoundException e){
 										out.println("De Servidor: No recibi bien tu vuelo ");
-									}
+									}*/
 									break;
 								default:
 									System.out.println("Nada que hacer");
 							}
 						}
 						out.println("close");
+						System.out.println(nombreCliente + "Desconectado");
 						cliente.close();
 
 					}catch(IOException e){
