@@ -44,19 +44,23 @@ public class Vendedor{
     }
   }
   
-  public void asignarAsientos(Vuelo vuelo, int numeroAsiento){
-    //Pendiente
-    //
-    //Mandar asientos al servidor, que el diga si se puede asignar
+  public void asignarAsientos(Vuelo vuelo, String numeroAsiento){
+    vuelo.asignarAsiento(numeroAsiento);
   }
 
-  public void quitarAsientos(Vuelo vuelo, int numeroAsiento){
-    //Pendiente
+  public void quitarAsientos(Vuelo vuelo, String numeroAsiento){
+    vuelo.desocuparAsiento(numeroAsiento);
   }  
 
-  public void generarReciboTicket(Vuelo vuelo){
-    //Pendiente
-    //Tomar de la practica del carrito
+  public void generarReciboTicket(Vuelo vuelo) {
+    System.out.println("Generando recibo...");
+    System.out.println("______________________");
+    System.out.println("Vuelo ID: " + vuelo.getID());
+    System.out.println("Origen: " + vuelo.getOrigen());
+    System.out.println("Destino: " + vuelo.getDestino());
+    System.out.println("Fecha de salida: " + vuelo.getFecha());
+    System.out.println("Costo: $" + vuelo.getCosto());
+    System.out.println("______________________");
   }
 
 }
