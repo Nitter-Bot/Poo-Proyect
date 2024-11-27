@@ -7,6 +7,7 @@ public class Vendedor{
   private int idTrabajador;
   private String jefeDirecto;
   private List<Vuelo> vuelosDisponibles;
+  private int ventasRealizadas;
 
   public Vendedor(String nombre, int idTrabajador, String jefeDirecto) {
     this.nombre = nombre;
@@ -63,4 +64,20 @@ public class Vendedor{
     System.out.println("______________________");
   }
 
+  public void realizarVenta(Vuelo vuelo, int numAsientos) {
+    ventasRealizadas++;
+    System.out.println("Venta registrada: Vendedor " + nombre + ", Vuelo ID " + vuelo.getID() + ", Asientos vendidos: " + numAsientos);
+    registrarVentaEnCSV(nombre, ventasRealizadas, vuelo.getID(), numAsientos);
+    }
+  
+  private void registrarVentaEnCSV(String vendedor, int numVenta, int vueloID, int numAsientos) {
+    String archivo = "ventas.csv";
+    try (FileWriter writer = new FileWriter(archivo, true)) {
+      writer.append(vendedor).append(",").append(String.valueOf(numVenta)).append(",")
+      .append(String.valueOf(vueloID)).append(",").append(String.valueOf(numAsientos)).append("\n");
+      System.out.println("Venta registrada en el archivo CSV.");
+    }catch(IOException e){
+      System.err.println("Error al escribir en el archivo CSV: " + e.getMessage());
+    }
+  }
 }
