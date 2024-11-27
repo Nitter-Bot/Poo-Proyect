@@ -27,8 +27,7 @@ public class Autenticacion implements Serializable{
 
 	public boolean logIn(String user,String password){
 		Usuario u = users.get(user);
-		System.out.println(u);
-		if( u == null)return false;
+		if( u == null || u.connected())return false;
 
 		if(u.getPassword().equals(password))
 			return true;

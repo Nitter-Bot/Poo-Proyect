@@ -5,10 +5,12 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String user;
 	private String password;
+	private boolean connect;
 	
 	public Usuario(String user,String password){
 		this.user = user;
 		this.password = password;
+		this.connect = false;
 	}
 
 	public void setUser(String u){
@@ -24,6 +26,14 @@ public class Usuario implements Serializable{
 	
 	public String getPassword(){
 		return password;
+	}
+
+	public void setConnect(boolean c){
+		connect = c;
+	}
+
+	public boolean connected(){
+		return connect;
 	}
 }
 
