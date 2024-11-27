@@ -10,8 +10,8 @@ public class Server{
 	private static ListaVuelos lst = new ListaVuelos();
 
 	public static void main(String[] args){
-		ctrl.addUser("admin","admin");
-		ctrl.addUser("Vendedor1","pass");
+		ctrl.addUser("admin","admin","admin");
+		ctrl.addUser("Vendedor1","pass","vendedor");
 
 		ServerSocket server = null;
         	try{
@@ -48,6 +48,7 @@ public class Server{
 		private String nombreCliente;
 		private ObjectOutputStream outObj;
 		private ObjectInputStream inObj;
+		private String user = null;
 		public ManejadorCliente(Socket c){
 			this.cliente = c;
 			try{
@@ -79,9 +80,6 @@ public class Server{
 								case "dameVuelos":
 									lst.printVuelos(out);
 									break;
-								case "actualizoVuelos":
-									//lst.receiveVuelos(inObj);
-									break;
 								case "agregaVuelo":
 									/*try{
 										lst.agregarVuelo((Vuelo)inObj.readObject());
@@ -94,7 +92,8 @@ public class Server{
 							}
 						}
 						out.println("close");
-						System.out.println(nombreCliente + "Desconectado");
+						System.out.println(nombreCliente + " Desconectado");
+						ctrl.desconectarUsuario(user);
 						cliente.close();
 
 					}catch(IOException e){
@@ -109,6 +108,7 @@ public class Server{
 			}catch(IOException e){
 				System.out.println("Hubo algun error");
 			}catch(UserNotFound us){
+				System.out.println(nombreCliente + " No paso la verificacion");
 				out.println("Usuario y/o password incorrecta");
 				out.println("Cerrando Conexion...");
 				out.println("close");
@@ -118,7 +118,7 @@ public class Server{
 		}
 		
 		private void VerificarUsuario() throws UserNotFound,IOException{
-			String user, pass;
+			String pass;
 			System.out.println("Verificando al usuario "+ nombreCliente );
 			out.println("Ingrese Usuario....");
 			user = in.readLine();
@@ -127,7 +127,7 @@ public class Server{
 
 			if(ctrl.accessGranted(user,pass)){
 				System.out.println(nombreCliente+" Verificado!");
-
+				out.println(ctrl.rol(user));
 				out.println(" ");
 			}else{
 				throw new UserNotFound();
