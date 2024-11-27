@@ -1,14 +1,14 @@
 package Acceso;
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.concurrent.*;
 
 public class Autenticacion implements Serializable{
 	private static final long serialVersionUID  = 1L;
 
-	private HashMap<String,Usuario> users = new HashMap<String,Usuario>();
+	private ConcurrentHashMap<String,Usuario> users = new ConcurrentHashMap<>();
 
-	public void signUpUser(String u,String p){
-		users.put(u,new Usuario(u,p));
+	public void signUpUser(String u,String p,String r){
+		users.put(u,new Usuario(u,p,r));
 	}
 
 	public void printMap(){
@@ -29,9 +29,10 @@ public class Autenticacion implements Serializable{
 		Usuario u = users.get(user);
 		if( u == null || u.connected())return false;
 
-		if(u.getPassword().equals(password))
+		if(u.getPassword().equals(password)){
+			u.setConnect(true);
 			return true;
-		else return false;
+		}else return false;
 	}
 }
 

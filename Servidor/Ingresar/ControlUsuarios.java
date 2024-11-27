@@ -4,9 +4,9 @@ import Acceso.*;
 public class ControlUsuarios{
 	private Autenticacion authControler = Deserializar.loadUsers();
 
-	public String addUser(String user,String password){
+	public String addUser(String user,String password,String rol){
 		if(!authControler.userExists(user)){
-			authControler.signUpUser(user,password);
+			authControler.signUpUser(user,password,rol);
 			return "Usuario registrado con exito";
 		}else return "Usuario no valido, ya existe";
 	}
@@ -22,6 +22,18 @@ public class ControlUsuarios{
 	public void save(){
 		Serializar.saveUsers(authControler);
 	}
+
+	public String rol(String user){
+		return authControler.getUser(user).getRol();
+	}
+
+	public synchronized void desconectarUsuario(String user){
+		authControler.getUser(user).setConnect(false);
+	}
+
+	/*public void disconnectUser(){
+		authControler.set
+	}*/
 
 	/* Prueba marrana
 		public static void main(String [] args){
