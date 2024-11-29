@@ -87,11 +87,12 @@ public class Server{
 										out.println("De Servidor: No recibi bien tu vuelo ");
 									}*/
 									break;
+								case "Vuelo":
+									lst.getVuelo(Integer.parseInt(in.readLine()),out);
 								default:
 									System.out.println("Nada que hacer");
 							}
 						}
-						out.println("close");
 						System.out.println(nombreCliente + " Desconectado");
 						ctrl.desconectarUsuario(user);
 						cliente.close();
