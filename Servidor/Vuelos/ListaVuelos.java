@@ -35,7 +35,12 @@ public class ListaVuelos implements Serializable{
 	}
 
 	public synchronized void getVuelo(int index, PrintWriter out){
-		Vuelo v = vuelos.get(index-1);
+		index = Math.max(0,index-1);
+		if(index >= vuelos.size()){
+			out.println("Vuelo no existe !");
+			return;
+		}
+		Vuelo v = vuelos.get(index);
 		v.mostrarAsientosDisponibles(out);
 	}
 }

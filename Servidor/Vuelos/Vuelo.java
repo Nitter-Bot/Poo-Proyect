@@ -1,6 +1,5 @@
 package Vuelos;
-import java.util.HashSet;
-import  java.util.Set;
+import java.util.*;
 import java.io.*;
 
 public class Vuelo implements Serializable{
@@ -75,7 +74,7 @@ public class Vuelo implements Serializable{
     }
   }
   
-  void mostrarAsientosDisponibles(PrintWriter out){
+  public synchronized void mostrarAsientosDisponibles(PrintWriter out){
     out.print("\033[H\033[2J");  
     out.flush();
     out.printf("Vuelo %d\nOrigen: %s \tDestino %s \tFecha Programada del vuelo %s",id,origen,destino,fechaSalida);
