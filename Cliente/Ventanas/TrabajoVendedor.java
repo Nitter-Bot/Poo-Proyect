@@ -1,6 +1,7 @@
 package VentanasTrabajo;
 import java.io.*;
 import java.util.*;
+import Actores.Vendedor;
 
 public class TrabajoVendedor(){
 	Scanner sc = new Scanner(System.in);
@@ -34,7 +35,11 @@ public class TrabajoVendedor(){
 
 		switch(op){
 			case 1:
-				
+				do{
+					clear();
+					out.println("dameVuelos");
+					menuVuelos();
+				}while(elegirVuelos())
 				break;
 			case 2:
 
@@ -49,49 +54,63 @@ public class TrabajoVendedor(){
 	}
 	
 	protected void menuVuelos(){
-		System.out.println("[1] Elegir vuelo");
+		System.out.println("\n\n[1] Elegir vuelo");
 		System.out.println("[2] Regresar");
+		System.out.println("Elige tu opcion: ");
 	}
 
-	protected void elejirVuelos(){
+	protected boolean elegirVuelos(){
 		int op = elegir(-1);
 		switch(op){
 			case 1:
+				System.out.print("Ingresa numero del vuelo: ");
+				int n = elegir(-1);
+				clear();
+				do{
+					out.println("Vuelo");
+					out.println(n);
+					menuCompra();
+				while(elegirCompra())
 				
 				break;
 			case 2:
-				
+				return false;
 				break;
 			default:
 				System.out.println("Opcion invalida");
 		}
+		return true;
 	}
 
 	protected void menuCompra(){
-		System.out.println("[1] Elejir Asientos ");
+		System.out.println("\n\n[1] Elegir Asientos ");
 		System.out.println("[2] Quitar Asientos ");
 		System.out.println("[3] Realizar compra ");
 		System.out.println("[4] Regresar");
 	}
 
-	protected void elegirCompra(){
+	protected boolean elegirCompra(){
 		int op = elegir(-1);
 		switch(op){
 			case 1:
-				
+				user.asignar();
+				zzz();
 				break;
 			case 2:
-				
+				user.quitar();
+				System.out.println("Regresando...")
+				zzz();
 				break;
 			case 3:
 				
 				break;
 			case 4:
-				
+				return false;
 				break;
 			default:
 				System.out.println("Opcion invalida");
 		}
+		return true;
 	}
 
 	protected void clear(){
@@ -108,6 +127,14 @@ public class TrabajoVendedor(){
 			}
 		}while(op==-1)
 		return op;
+	}
+
+	protected void zzz(){
+		try{
+			Thread.sleep(2000);
+		}catch(InterruptedException){
+			e.printStackTrace();
+		}
 	}
 
 }

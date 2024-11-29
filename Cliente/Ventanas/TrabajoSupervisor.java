@@ -1,6 +1,7 @@
 package VentanasTrabajo;
 import java.io.*;
 import java.util.*;
+import Actores.Supervisor;
 
 public class TrabajoSupervisor extends TrabajoVendedor{
 	private Supervisor user;
