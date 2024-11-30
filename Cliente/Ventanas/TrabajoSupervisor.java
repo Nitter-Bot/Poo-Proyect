@@ -6,12 +6,10 @@ import Actores.Supervisor;
 public class TrabajoSupervisor extends TrabajoVendedor{
 	private Supervisor user;
 
-	public TrabajoSupervisor(PrintWriter o,BufferedReade in){
-		user = new Supervisor();
-		this.out = o;
-		this.in = in;
+	public TrabajoSupervisor(PrintWriter o,BufferedReader in,ObjectOutputStream ob){
+		super(o,in,ob);
 	}
-
+	/*
 	@Override
 	protected void menuPrincipal(){
 		clear();
@@ -26,14 +24,8 @@ public class TrabajoSupervisor extends TrabajoVendedor{
 
 	@Override
 	protected void elegirPrincipal(){
-		int op = -1;
-		do{
-			try{
-				op = Integer.parseInt(sc.nextLine());
-			}catch(NumberFormatException e){
-				System.out.println("Ingresa solo numeros");
-			}
-		}while(op!=-1)
+		int op = elegir(-1);
+	
 
 		switch(op){
 			case 1:
@@ -54,7 +46,7 @@ public class TrabajoSupervisor extends TrabajoVendedor{
 			default:
 				System.out.println("Opcion Invalida");
 		}
-	}
+	}*/
 
 	protected void menuVerVendedores(){
 		System.out.println("[1] Agregar Vendedor");
@@ -62,21 +54,21 @@ public class TrabajoSupervisor extends TrabajoVendedor{
 		System.out.println("[3] Regresar");
 	}
 
-	protected void elegirVendedores(){
+	protected boolean elegirVendedores(){
 		int op = elegir(-1);
 		switch(op){
-			case:
+			case 1:
 				
 				break;
-			case:
+			case 2:
 				
 				break;
-			case:
-				
-				break;
+			case 3:
+				return false;	
 			default:
 				System.out.println("Opcion Invalida");
 		}
+		return true;
 
 	}
 }

@@ -1,16 +1,16 @@
 package VentanasTrabajo;
 import java.io.*;
 import java.util.*;
-import Actores.Vendedor;
+import Actores.*;
 
-public class TrabajoVendedor(){
+public class TrabajoVendedor{
 	Scanner sc = new Scanner(System.in);
 	private Vendedor user;
 	protected ObjectOutputStream outObj;
 	protected PrintWriter out;
 	protected BufferedReader in;
 
-	public TrabajoVendedor(PrintWriter o,BufferedReade in,ObjectOutputStream ob){
+	public TrabajoVendedor(PrintWriter o,BufferedReader in,ObjectOutputStream ob){
 		user = new Vendedor();
 		this.outObj = ob;
 		this.out = o;
@@ -20,7 +20,7 @@ public class TrabajoVendedor(){
 	public void mostrarTrabajo(){
 		do
 			menuPrincipal();
-		while(elegirPrincipal())
+		while(elegirPrincipal());
 	}
 
 	protected void menuPrincipal(){
@@ -35,20 +35,19 @@ public class TrabajoVendedor(){
 	protected boolean elegirPrincipal(){
 		int op = elegir(-1);
 
-		switch(op){
+		switch(op){				
 			case 1:
 				do{
 					clear();
 					out.println("dameVuelos");
 					menuVuelos();
-				}while(elegirVuelos())
+				}while(elegirVuelos());
 				break;
 			case 2:
-
+				
 				break;
 			case 3:
 				return false;
-				break;
 			default:
 				System.out.println("Opcion Invalida");
 		}
@@ -72,12 +71,11 @@ public class TrabajoVendedor(){
 					out.println("Vuelo");
 					out.println(n);
 					menuCompra();
-				while(elegirCompra(n))
+				}while(elegirCompra(n));
 				
 				break;
 			case 2:
 				return false;
-				break;
 			default:
 				System.out.println("Opcion invalida");
 		}
@@ -100,19 +98,19 @@ public class TrabajoVendedor(){
 				break;
 			case 2:
 				user.quitar();
-				System.out.println("Regresando...")
+				System.out.println("Regresando...");
 				zzz();
 				break;
 			case 3:
 				if(user.emptySet()){
-					"No se ha asignado nada";
+					System.out.println("No se ha asignado nada");
 					zzz();
 					clear();
 				}else{
 					out.println("asignar");
 					out.println(n);
 					out.println(user.szSet());
-					user.seats();
+					user.seats(out);
 					System.out.println("Generando recibo, confirmos los datos");
 					System.out.println("ID : ");
 					String ID = sc.nextLine();
@@ -123,16 +121,15 @@ public class TrabajoVendedor(){
 					System.out.println("Fecha: ");
 					String date = sc.nextLine();
 					System.out.println("Costo:");
-					float costo = Float.ParseFloat(sc.nextLine())* user.szSet();
-					user.mandarVentas(out);
+					double costo = Double.parseDouble(sc.nextLine())* user.szSet();
+					//user.mandarVentas(out);
 					user.realizarVenta(user.szSet(),ID);
-					user.GenerarReciboTicket(or,des,date,costo,ID);
+					//user.GenerarReciboTicket(or,des,date,costo,ID);
 					System.out.println("Venta Realiza y registrada");
 				}
 				break;
 			case 4:
 				return false;
-				break;
 			default:
 				System.out.println("Opcion invalida");
 		}
@@ -144,21 +141,21 @@ public class TrabajoVendedor(){
 		System.out.flush();
 	}
 
-	protected void elegir(int op){
+	protected int elegir(int op){
 		do{
 			try{
 				op = Integer.parseInt(sc.nextLine());
 			}catch(NumberFormatException e){
 				System.out.println("Ingresa solo numeros");
 			}
-		}while(op==-1)
+		}while(op==-1);
 		return op;
 	}
 
 	protected void zzz(){
 		try{
 			Thread.sleep(2000);
-		}catch(InterruptedException){
+		}catch(InterruptedException e){
 			e.printStackTrace();
 		}
 	}
