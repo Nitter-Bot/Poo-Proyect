@@ -18,8 +18,8 @@ public class Cliente{
 		while(!makeConnection());
 
 		try {
-			//ObjectOutputStream outObj = new ObjectOutputStream(socket.getOutputStream()); 
-			//ObjectInputStream inObj = new ObjectInputStream(socket.getInputStream());
+			ObjectOutputStream outObj = new ObjectOutputStream(socket.getOutputStream()); 
+			ObjectInputStream inObj = new ObjectInputStream(socket.getInputStream());
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			System.out.flush();
@@ -44,9 +44,9 @@ public class Cliente{
 			}).start();
 
 			if(userRol.equals("vendedor")){
-				new TrabajoVendedor(out,in).mostrarTrabajo();
+				new TrabajoVendedor(out,in,outObj).mostrarTrabajo();
 			}else{
-				new TrabajoSupervisor(out,in).mostrarTrabajo();
+				new TrabajoSupervisor(out,in,outObj).mostrarTrabajo();
 			}
 			
 			out.close();
