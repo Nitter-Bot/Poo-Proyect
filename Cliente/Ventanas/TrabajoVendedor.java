@@ -102,7 +102,18 @@ public class TrabajoVendedor(){
 				zzz();
 				break;
 			case 3:
-				
+				if(user.emptySet()){
+					"No se ha asignado nada";
+					zzz();
+					clear();
+				}else{
+					out.println("asignar");
+					out.println(user.szSet());
+					user.seats();
+					System.out.println("ID : ");
+					String ID = sc.nextLine();
+					user.realizarVenta(user.szSet(),ID);
+				}
 				break;
 			case 4:
 				return false;
