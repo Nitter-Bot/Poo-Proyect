@@ -2,35 +2,26 @@ package Actores;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
+import java.util.*;
+import Vuelos.Vuelo;
 
 public class Supervisor extends Vendedor{
   private List<Vuelo> vuelosControlados;
   Scanner sc = new Scanner(System.in);
-  //Constructor :D
-  public Supervisor(String nombre, int idTrabajador, String jefeDirecto, ControlUsuarios controlUsuarios){
-    super(nombre, idTrabajador, jefeDirecto, controlUsuarios);
-    this.vuelosControlados = new ArrayList<>();
-  }
 
-  //Autenticacion para el supervisor
-  public boolean iniciarSesion(String usuario, String password){
-    Usuario user = controlUsuarios.accessGranted(usuario, password);
-    if(user != null){
-      System.out.println("Inicio de sesion exitoso para el supervisor: "+user.getUser());
-      return true;
-    }else{
-      System.out.println("Error de autenticacion.")
-        return false;
-    }
-  }
-
-  public void agregarVuelos(Vuelo vuelo){
+  public void agregarVuelos(){
     System.out.println("Ingre Id");
+    String id = sc.nextLine();
     System.out.println("Ingrese Origen");
+    String origen = sc.nextLine();
     System.out.println("Ingrese Destino");
-    System.out.println("Ingrese Fecah de Salida");
-    vuelosControlados.add(vuelo);
-    System.out.println("Vuelo "+vuelo.getIdVuelo()+" agregado.");
+    String destino = sc.nextLine();
+    System.out.println("Ingrese Fecha de Salida");
+    String fecha = sc.nextLine();
+    System.out.println("Ingrese costo del boleto");
+    double costo = Double.parseDouble(sc.nextLine());
+    Vuelo v = new Vuelo(id,costo,origen,destino,fecha);
+
   }
 
   public void contratarVendedores(PrintWriter out){
@@ -39,5 +30,7 @@ public class Supervisor extends Vendedor{
       out.println(user);
       System.out.println("Ingrese pass");
       String pass = sc.nextLine();
-    out.println(pass);
+      out.println(pass);
+  }
 }
+
