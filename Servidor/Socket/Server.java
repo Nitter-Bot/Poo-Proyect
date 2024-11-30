@@ -52,8 +52,8 @@ public class Server{
 		public ManejadorCliente(Socket c){
 			this.cliente = c;
 			try{
-				//outObj = new ObjectOutputStream(cliente.getOutputStream()); 
-				//inObj = new ObjectInputStream(cliente.getInputStream());
+				outObj = new ObjectOutputStream(cliente.getOutputStream()); 
+				inObj = new ObjectInputStream(cliente.getInputStream());
 				out = new PrintWriter(cliente.getOutputStream(), true);
 				in = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
 			}catch(IOException e){
@@ -81,14 +81,20 @@ public class Server{
 									lst.printVuelos(out);
 									break;
 								case "agregaVuelo":
-									/*try{
+									try{
 										lst.agregarVuelo((Vuelo)inObj.readObject());
 									}catch(ClassNotFoundException e){
 										out.println("De Servidor: No recibi bien tu vuelo ");
-									}*/
+									}
 									break;
 								case "Vuelo":
 									lst.getVuelo(Integer.parseInt(in.readLine()),out);
+								case "asignar":
+									int index = Integer.parseInt(in.readLine());
+									int n = Integer.parseInt(in.readLine());
+									for(int i=0;i<n;i++){
+										lst.asignar(in.readLine(),index);
+									}
 								default:
 									System.out.println("Nada que hacer");
 							}
