@@ -8,6 +8,20 @@ public class Vendedor{
   private int ventasRealizadas;
   private Set<String> asientos = new HashSet<>();
 
+  public boolean emptySet(){
+    return asientos.empty();
+  }
+
+  public int szSet(){
+    return asientos.size();
+  }
+
+  public void seats(PrintWriter out){
+    for(String s:asientos){
+      out.println(s);
+    }
+  }
+
   public String getNombre(){
     return nombre;
   }
@@ -66,13 +80,13 @@ public class Vendedor{
     System.out.println("______________________");
   }
 
-  public void realizarVenta(Vuelo vuelo, int numAsientos) {
+  public void realizarVenta(int numAsientos,String id) {
     ventasRealizadas++;
-    System.out.println("Venta registrada: Vendedor " + nombre + ", Vuelo ID " + vuelo.getID() + ", Asientos vendidos: " + numAsientos);
-    registrarVentaEnCSV(nombre, ventasRealizadas, vuelo.getID(), numAsientos);
+    System.out.println("Venta registrada: Vuelo ID " +id+ ", Asientos vendidos: " + numAsientos);
+    registrarVentaEnCSV(id, numAsientos);
     }
   
-  private void registrarVentaEnCSV(String vendedor, int numVenta, int vueloID, int numAsientos) {
+  private void registrarVentaEnCSV(String vueloID, int numAsientos) {
     String archivo = "ventas.csv";
     try (FileWriter writer = new FileWriter(archivo, true)) {
       writer.append(vendedor).append(",").append(String.valueOf(numVenta)).append(",")
@@ -83,7 +97,7 @@ public class Vendedor{
     }
   }
   protected void clear(){
-		System.out.print("\033[H\033[2J");  
+		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	}
 }
