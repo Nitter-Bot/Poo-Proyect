@@ -29,6 +29,11 @@ public class ListaVuelos implements Serializable{
 			out.println("*-----------------------------------*");
 		}
 	}
+
+	public synchronized void asignar(String s,int index){
+		Vuelo v = vuelos.get(index);
+		v.asignarAsiento(s);
+	}
 	
 	public synchronized void agregarVuelo(Vuelo v){
 		vuelos.add(v);

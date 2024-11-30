@@ -12,6 +12,7 @@ public class Vuelo implements Serializable{
   public String getOrigen(){
     return origen;
   }
+
   public String getDestino(){
     return destino;
   }
@@ -62,6 +63,7 @@ public class Vuelo implements Serializable{
       System.out.println("Se asigno el asiento : "+lugar);
     }else {
       System.out.println("El asiento : "+lugar+" no esta disponible. ");
+      System.out.println("Mensaje al cliente de que el lugar tuvo error");
     }    
   }
   
