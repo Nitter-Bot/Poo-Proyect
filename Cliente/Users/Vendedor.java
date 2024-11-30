@@ -1,6 +1,7 @@
 package Actores;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 public class Vendedor{
   private String nombre;
@@ -69,14 +70,14 @@ public class Vendedor{
     }while(!(asientos.empty()))
   }
 
-  public void generarReciboTicket(Vuelo vuelo) {
+  public void generarReciboTicket(String origen,String Destino,String Fecha,String Costo,String ID) {
     System.out.println("Generando recibo...");
     System.out.println("______________________");
-    System.out.println("Vuelo ID: " + vuelo.getID());
-    System.out.println("Origen: " + vuelo.getOrigen());
-    System.out.println("Destino: " + vuelo.getDestino());
-    System.out.println("Fecha de salida: " + vuelo.getFecha());
-    System.out.println("Costo: $" + vuelo.getCosto());
+    System.out.println("Vuelo ID: " + ID);
+    System.out.println("Origen: " + origen);
+    System.out.println("Destino: " + Destino);
+    System.out.println("Fecha de salida: " + Fecha);
+    System.out.println("Costo: $" + Costo);
     System.out.println("______________________");
   }
 
@@ -89,8 +90,8 @@ public class Vendedor{
   private void registrarVentaEnCSV(String vueloID, int numAsientos) {
     String archivo = "ventas.csv";
     try (FileWriter writer = new FileWriter(archivo, true)) {
-      writer.append(vendedor).append(",").append(String.valueOf(numVenta)).append(",")
-      .append(String.valueOf(vueloID)).append(",").append(String.valueOf(numAsientos)).append("\n");
+      writer.append(String.valueOf(ventasRealizadas).append(",")
+      .append(vueloID).append(",").append(String.valueOf(numAsientos)).append("\n");
       System.out.println("Venta registrada en el archivo CSV.");
     }catch(IOException e){
       System.err.println("Error al escribir en el archivo CSV: " + e.getMessage());

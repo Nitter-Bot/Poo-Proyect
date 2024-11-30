@@ -36,7 +36,7 @@ public class Supervisor extends Vendedor{
   public void contratarVendedores(PrintWriter out){
       System.out.println("Ingrese nombre");
       String user = sc.nextLine();
-    out.println(user);
+      out.println(user);
       System.out.println("Ingrese pass");
       String pass = sc.nextLine();
     out.println(pass);
