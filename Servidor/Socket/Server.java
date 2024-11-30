@@ -81,11 +81,11 @@ public class Server{
 									lst.printVuelos(out);
 									break;
 								case "agregaVuelo":
-									try{
+									/*try{
 										lst.agregarVuelo((Vuelo)inObj.readObject());
 									}catch(ClassNotFoundException e){
 										out.println("De Servidor: No recibi bien tu vuelo ");
-									}
+									}*/
 									break;
 								case "Vuelo":
 									lst.getVuelo(Integer.parseInt(in.readLine()),out);

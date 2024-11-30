@@ -5,7 +5,7 @@ import java.io.*;
 public class Vuelo implements Serializable{
   private static final long serialVersionUID = 1L;
   private Set<String>asientos= new HashSet<>();//En el set unicamente contiene los asientos disponibles
-  private int id;
+  private String id;
   private double costo;
   private String origen,destino,fechaSalida;
   
@@ -22,14 +22,14 @@ public class Vuelo implements Serializable{
   public double getCosto(){
     return costo;
   }
-  public int getID(){
+  public String getID(){
     return id;
   }
 
   int capacidad=50;//Aun no entiendo su funcion pero ya esta declarada jaja
     Vuelo (){}
   //CONSTRUCTORES
-    Vuelo(int id,double costo,String origen,String destino,String fechaSalida){
+    public Vuelo(String id,double costo,String origen,String destino,String fechaSalida){
       this.id=id;
       this.costo=costo;
       this.origen=origen;
@@ -44,7 +44,7 @@ public class Vuelo implements Serializable{
         }
     }
 
-  Vuelo(int id,double costo, String fechaSalida){
+  public Vuelo(String id,double costo, String fechaSalida){
       this.id=id;
       this.costo=costo;
       this.fechaSalida=fechaSalida;
