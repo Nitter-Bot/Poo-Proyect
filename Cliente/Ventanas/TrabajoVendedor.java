@@ -6,11 +6,13 @@ import Actores.Vendedor;
 public class TrabajoVendedor(){
 	Scanner sc = new Scanner(System.in);
 	private Vendedor user;
+	protected ObjectOutputStream outObj;
 	protected PrintWriter out;
 	protected BufferedReader in;
 
-	public TrabajoVendedor(PrintWriter o,BufferedReade in){
+	public TrabajoVendedor(PrintWriter o,BufferedReade in,ObjectOutputStream ob){
 		user = new Vendedor();
+		this.outObj = ob;
 		this.out = o;
 		this.in = in;
 	}
@@ -70,7 +72,7 @@ public class TrabajoVendedor(){
 					out.println("Vuelo");
 					out.println(n);
 					menuCompra();
-				while(elegirCompra())
+				while(elegirCompra(n))
 				
 				break;
 			case 2:
@@ -89,7 +91,7 @@ public class TrabajoVendedor(){
 		System.out.println("[4] Regresar");
 	}
 
-	protected boolean elegirCompra(){
+	protected boolean elegirCompra(int n){
 		int op = elegir(-1);
 		switch(op){
 			case 1:
@@ -108,11 +110,24 @@ public class TrabajoVendedor(){
 					clear();
 				}else{
 					out.println("asignar");
+					out.println(n);
 					out.println(user.szSet());
 					user.seats();
+					System.out.println("Generando recibo, confirmos los datos");
 					System.out.println("ID : ");
 					String ID = sc.nextLine();
+					System.out.println("Origen: ");
+					String or = sc.nextLine();
+					System.out.println("Destino: ");
+					String des = sc.nextLine();
+					System.out.println("Fecha: ");
+					String date = sc.nextLine();
+					System.out.println("Costo:");
+					float costo = Float.ParseFloat(sc.nextLine())* user.szSet();
+					user.mandarVentas(out);
 					user.realizarVenta(user.szSet(),ID);
+					user.GenerarReciboTicket(or,des,date,costo,ID);
+					System.out.println("Venta Realiza y registrada");
 				}
 				break;
 			case 4:
