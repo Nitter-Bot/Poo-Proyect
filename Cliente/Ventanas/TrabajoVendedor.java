@@ -2,19 +2,28 @@ package VentanasTrabajo;
 import java.io.*;
 import java.util.*;
 import Actores.*;
+import java.net.Socket;
 
 public class TrabajoVendedor{
 	Scanner sc = new Scanner(System.in);
 	private Vendedor user;
+	protected InputStream INPUT;
+	protected OutputStream OUTPUT;
 	protected ObjectOutputStream outObj;
 	protected PrintWriter out;
 	protected BufferedReader in;
+	protected ObjectInputStream inObj;
+	protected DataOutputStream outFile;
+	protected DataInputStream inFile;
 
-	public TrabajoVendedor(PrintWriter o,BufferedReader in,ObjectOutputStream ob){
+	public TrabajoVendedor(PrintWriter o,BufferedReader in,ObjectOutputStream outObj,ObjectInputStream inObj,DataOutputStream outFile, DataInputStream inFile){
 		user = new Vendedor();
-		this.outObj = ob;
 		this.out = o;
 		this.in = in;
+		this.outObj = outObj;
+		this.inObj = inObj;
+		this.outFile = outFile;
+		this.inFile = inFile;
 	}
 	
 	public void mostrarTrabajo(){
@@ -47,6 +56,7 @@ public class TrabajoVendedor{
 				
 				break;
 			case 3:
+				out.println("exit");
 				return false;
 			default:
 				System.out.println("Opcion Invalida");
