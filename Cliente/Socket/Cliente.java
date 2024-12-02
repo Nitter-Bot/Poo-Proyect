@@ -18,10 +18,15 @@ public class Cliente{
 		while(!makeConnection());
 
 		try {
-			ObjectOutputStream outObj = new ObjectOutputStream(socket.getOutputStream()); 
-			ObjectInputStream inObj = new ObjectInputStream(socket.getInputStream());
-			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			OutputStream OUT = socket.getOutputStream();
+			InputStream IN = socket.getInputStream();
+
+			ObjectOutputStream outObj = new ObjectOutputStream(OUT);
+			ObjectInputStream inObj = new ObjectInputStream(IN);
+			PrintWriter out = new PrintWriter(OUT, true);
+			BufferedReader in = new BufferedReader(new InputStreamReader(IN));
+			DataOutputStream outFile = new DataOutputStream(OUT);
+			DataInputStream inFile = new DataInputStream(IN);
 			System.out.flush();
 			//Verificacion, un solo intento
 			System.out.println(in.readLine());
@@ -30,11 +35,16 @@ public class Cliente{
 			out.println(scanner.nextLine());
 			userRol = in.readLine();
 			clearC();
+			if(userRol.equals("close")){
+				System.out.println("No paso la verificacion\n Cerrando programa ...");
+				return;
+			}
 			//Hilo para leer los msj del servidor
 			new Thread(() -> {
 				try {
 					String serverResponse;
 					while ((serverResponse = in.readLine()) != null) {
+						if(serverResponse.equals("close"))break;
 						System.out.println(serverResponse);
 				    }
 
@@ -43,16 +53,17 @@ public class Cliente{
 				}
 			}).start();
 
+
 			if(userRol.equals("vendedor")){
-				new TrabajoVendedor(out,in,outObj).mostrarTrabajo();
+				new TrabajoVendedor(out,in,outObj,inObj,outFile,inFile).mostrarTrabajo();
 			}else{
-				new TrabajoSupervisor(out,in,outObj).mostrarTrabajo();
+				new TrabajoSupervisor(out,in,outObj,inObj,outFile,inFile).mostrarTrabajo();
 			}
 			
 			out.close();
 			in.close();
 		} catch (IOException e) {
-		    e.printStackTrace();
+			System.out.println("Hasta luego");
 		}
 	}
 
