@@ -7,6 +7,7 @@ public class Serializar{
 			FileOutputStream list = new FileOutputStream("Vuelos.txt");
 			ObjectOutputStream ob = new ObjectOutputStream(list);
 			ob.writeObject(a);
+			System.out.println("Vuelos guardados en la base de datos");
 			ob.close();
 			list.close();
 		}catch(IOException e){

@@ -7,7 +7,7 @@ import Vuelos.*;
 public class Server{
 	private static final int PUERTO = 1234;
 	private static ControlUsuarios ctrl = new ControlUsuarios();
-	private static ListaVuelos lst = new ListaVuelos();
+	private static ListaVuelos lst = Deserializar.loadVuelos();
 
 	public static void main(String[] args){
 		ServerSocket server = null;
@@ -88,12 +88,14 @@ public class Server{
 									try{
 										lst.agregarVuelo((Vuelo)inObj.readObject());
 										out.println("Servidor: Vuelo agregado con exito");
+										Serializar.saveVuelos(lst);
 									}catch(ClassNotFoundException e){
 										out.println("De Servidor: No recibi bien tu vuelo ");
 									}
 									break;
 								case "Vuelo":
-									lst.getVuelo(Integer.parseInt(in.readLine()),out);
+									int numberVuelo = Integer.parseInt(in.readLine());
+									lst.getVuelo(numberVuelo,out);
 								case "asignar":
 									int index = Integer.parseInt(in.readLine());
 									int n = Integer.parseInt(in.readLine());

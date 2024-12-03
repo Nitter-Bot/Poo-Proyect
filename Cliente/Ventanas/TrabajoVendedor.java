@@ -49,6 +49,7 @@ public class TrabajoVendedor{
 				do{
 					clear();
 					out.println("dameVuelos");
+					zzz();
 					menuVuelos();
 				}while(elegirVuelos());
 				break;
