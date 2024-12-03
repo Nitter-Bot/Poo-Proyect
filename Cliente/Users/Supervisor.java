@@ -8,7 +8,7 @@ public class Supervisor extends Vendedor{
   Scanner sc = new Scanner(System.in);
 
   public void agregarVuelos(ObjectOutputStream out){
-    System.out.println("Ingre Id");
+    System.out.println("Ingrese Id");
     String id = sc.nextLine();
     System.out.println("Ingrese Origen");
     String origen = sc.nextLine();
