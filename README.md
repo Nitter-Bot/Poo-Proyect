@@ -12,3 +12,5 @@ Se lleva un registro de los vuelos, y la venta de boletos a los lugares
 ## Diagramas Uml
 
 ![Diagrama de Clases del Sistema](./Diagramas/DiagramaDeClases.jpg)
+
+![Diagrama de Casos de Uso](./Diagramas/DiagramaDeUso.jpg)
